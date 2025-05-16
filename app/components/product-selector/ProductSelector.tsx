@@ -39,15 +39,11 @@ const ProductSelector = ({
     setEndCursors([]);
   }, 300);
 
-  const normalizedSelectedIds = useMemo(
-    () =>
-      Array.isArray(selectedIds)
-        ? selectedIds
-        : selectedIds
-        ? [selectedIds]
-        : [],
-    [selectedIds]
-  );
+  const normalizedSelectedIds = useMemo(() => {
+    if (!selectedIds) return [];
+
+    return Array.isArray(selectedIds) ? selectedIds : [selectedIds];
+  }, [selectedIds]);
 
   const afterCursor = currentPage > 1 ? endCursors[currentPage - 2] : null;
 
