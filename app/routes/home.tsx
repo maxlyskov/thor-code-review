@@ -1,5 +1,5 @@
+import { ProductSelector } from "~/components/product-selector";
 import type { Route } from "./+types/home";
-import { ExampleApollo } from "~/components/example-apollo";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,9 +9,16 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const handleSubmit = (ids: string | string[]) => {
+    console.log("Selected product IDs:", ids);
+  };
+
   return (
-    <main>
-      <ExampleApollo />
-    </main>
+    <div>
+      <ProductSelector
+        selectedIds={["product_01jdyxsjmve4atdr94bv0vvjvc"]}
+        onSubmit={handleSubmit}
+      />
+    </div>
   );
 }

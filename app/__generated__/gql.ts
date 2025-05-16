@@ -14,10 +14,12 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query ProductsPicker($query: String) {\n    products(channel: \"europe\", query: $query, first: 10) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n": typeof types.ProductsPickerDocument,
+    "\n  query Products(\n    $first: Int!\n    $after: String\n    $query: String\n    $channel: String!\n    $currency: String\n  ) {\n    products(\n      first: $first\n      after: $after\n      query: $query\n      channel: $channel\n      currency: $currency\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n": typeof types.ProductsDocument,
+    "\n  query ProductsByIds($query: String!, $channel: String!, $currency: String) {\n    products(\n      query: $query\n      channel: $channel\n      currency: $currency\n      first: 100\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n    }\n  }\n": typeof types.ProductsByIdsDocument,
 };
 const documents: Documents = {
-    "\n  query ProductsPicker($query: String) {\n    products(channel: \"europe\", query: $query, first: 10) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n": types.ProductsPickerDocument,
+    "\n  query Products(\n    $first: Int!\n    $after: String\n    $query: String\n    $channel: String!\n    $currency: String\n  ) {\n    products(\n      first: $first\n      after: $after\n      query: $query\n      channel: $channel\n      currency: $currency\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n": types.ProductsDocument,
+    "\n  query ProductsByIds($query: String!, $channel: String!, $currency: String) {\n    products(\n      query: $query\n      channel: $channel\n      currency: $currency\n      first: 100\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n    }\n  }\n": types.ProductsByIdsDocument,
 };
 
 /**
@@ -37,7 +39,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query ProductsPicker($query: String) {\n    products(channel: \"europe\", query: $query, first: 10) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n"): (typeof documents)["\n  query ProductsPicker($query: String) {\n    products(channel: \"europe\", query: $query, first: 10) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n"];
+export function gql(source: "\n  query Products(\n    $first: Int!\n    $after: String\n    $query: String\n    $channel: String!\n    $currency: String\n  ) {\n    products(\n      first: $first\n      after: $after\n      query: $query\n      channel: $channel\n      currency: $currency\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n"): (typeof documents)["\n  query Products(\n    $first: Int!\n    $after: String\n    $query: String\n    $channel: String!\n    $currency: String\n  ) {\n    products(\n      first: $first\n      after: $after\n      query: $query\n      channel: $channel\n      currency: $currency\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n        cursor\n      }\n      pageInfo {\n        hasNextPage\n        endCursor\n      }\n    }\n  }\n"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "\n  query ProductsByIds($query: String!, $channel: String!, $currency: String) {\n    products(\n      query: $query\n      channel: $channel\n      currency: $currency\n      first: 100\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query ProductsByIds($query: String!, $channel: String!, $currency: String) {\n    products(\n      query: $query\n      channel: $channel\n      currency: $currency\n      first: 100\n    ) {\n      edges {\n        node {\n          id\n          name\n        }\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
