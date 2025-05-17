@@ -13,7 +13,7 @@ import {
 import { useDebounce } from "~/hooks";
 import { ProductListItem } from "./ProductListItem";
 import { useProducts } from "./useProducts";
-import { usePreselectedProducts } from "./usePreSelectedProducts";
+import { usePreselectedProducts } from "./usePreselectedProducts";
 
 export interface ProductSelectorProps {
   onSubmit: (selectedIds: string | string[]) => void;
